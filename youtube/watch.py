@@ -555,6 +555,9 @@ def get_storyboard_vtt():
 
 
 time_table = {'h': 3600, 'm': 60, 's': 1}
+import time
+
+
 @yt_app.route('/watch')
 @yt_app.route('/embed')
 @yt_app.route('/embed/<video_id>')
@@ -606,7 +609,16 @@ def get_watch_page(video_id=None):
         'author':    info['author'],
         'author_id': info['author_id'],
     }
-
+    filename = "./youtube-history.txt"
+    with open(filename, "a") as file:
+        t = time.localtime()
+        current_time = time.strftime("%H:%M:%S", t)
+        file.write(info['title'])
+        file.write("---------")
+        file.write(str(request.url))
+        file.write("---------")
+        file.write(current_time)
+        file.write("\n")
     # prefix urls, and other post-processing not handled by yt_data_extract
     for item in info['related_videos']:
         util.prefix_urls(item)

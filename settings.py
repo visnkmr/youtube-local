@@ -49,7 +49,7 @@ SETTINGS_INFO = collections.OrderedDict([
         'default': False,
         'comment': '''This will allow others to connect to your Youtube Local instance as a website.
 For security reasons, enabling this is not recommended.''',
-        'hidden': True,
+        'hidden': False,
         'category': 'network',
     }),
 
